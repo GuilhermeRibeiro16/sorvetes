@@ -3,13 +3,14 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Order, OrderStatus } from '@/types'
-import { Package, CheckCircle, Clock, Bike, Store, MapPin } from 'lucide-react'
+import { Package, CheckCircle, Clock, Bike, Store, MapPin, X } from 'lucide-react'
 
 const statusConfig: Record<OrderStatus, { label: string; icon: any; step: number }> = {
   received: { label: 'Pedido recebido', icon: Clock, step: 1 },
   preparing: { label: 'Em preparo', icon: Package, step: 2 },
   ready: { label: 'Pronto', icon: CheckCircle, step: 3 },
   delivered: { label: 'Entregue', icon: Bike, step: 4 },
+  cancelled: { label: 'Cancelado', icon: X, step: 0 },
 }
 
 const formatPrice = (value: number) =>
