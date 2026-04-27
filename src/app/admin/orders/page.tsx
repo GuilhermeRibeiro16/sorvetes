@@ -4,16 +4,25 @@ import { AdminOrderCard } from '@/components/admin/OrderCard'
 async function getOrdersToday() {
   const supabase = createAdminClient()
 
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const tomorrow = new Date(today)
+  const now = new Date()
+  
+  // Usa UTC-3 (Brasília)
+  const brasiliaOffset = -3 * 60
+  const brasiliaTime = new Date(now.getTime() + (brasiliaOffset - now.getTimezoneOffset()) * 60000)
+  
+  const startOfDay = new Date(brasiliaTime)
+  startOfDay.setHours(0, 0, 0, 0)
+  const startOfDayUTC = new Date(startOfDay.getTime() - (brasiliaOffset * 60000))
+
+  const tomorrow = new Date(startOfDay)
   tomorrow.setDate(tomorrow.getDate() + 1)
+  const tomorrowUTC = new Date(tomorrow.getTime() - (brasiliaOffset * 60000))
 
   const { data } = await supabase
     .from('orders')
     .select(`*, order_items(*, order_item_options(*))`)
-    .gte('created_at', today.toISOString())
-    .lt('created_at', tomorrow.toISOString())
+    .gte('created_at', startOfDayUTC.toISOString())
+    .lt('created_at', tomorrowUTC.toISOString())
     .neq('status', 'cancelled')
     .order('created_at', { ascending: true })
 
