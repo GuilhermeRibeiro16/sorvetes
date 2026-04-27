@@ -1,5 +1,8 @@
+
 import { createAdminClient } from '@/lib/supabase/admin'
 import { AdminOrderCard } from '@/components/admin/OrderCard'
+import { OrdersRealtime } from '@/components/admin/OrdersRealtime'
+
 
 async function getOrdersToday() {
   const supabase = createAdminClient()
@@ -47,6 +50,7 @@ export default async function AdminOrdersPage() {
 
   return (
     <div className="flex flex-col gap-6">
+      <OrdersRealtime />
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold" style={{ color: 'var(--color-text)' }}>
           Pedidos de hoje
