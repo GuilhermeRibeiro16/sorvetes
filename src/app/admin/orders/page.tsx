@@ -1,8 +1,8 @@
-
 import { createAdminClient } from '@/lib/supabase/admin'
 import { AdminOrderCard } from '@/components/admin/OrderCard'
 import { OrdersRealtime } from '@/components/admin/OrdersRealtime'
 
+export const dynamic = 'force-dynamic'
 
 async function getOrdersToday() {
   const supabase = createAdminClient()
@@ -33,6 +33,7 @@ async function getOrdersToday() {
 }
 
 export default async function AdminOrdersPage() {
+  
   const orders = await getOrdersToday()
 
   const active = orders.filter(o => o.status !== 'delivered')
