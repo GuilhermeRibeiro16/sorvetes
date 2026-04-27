@@ -1,6 +1,7 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { DashboardClient } from '@/components/admin/DashboardClient'
 
+export const dynamic = 'force-dynamic'
 async function getDashboardData() {
   const supabase = createAdminClient()
 
