@@ -25,8 +25,14 @@ export function OrdersRealtime() {
       )
       .subscribe()
 
+    // Fallback — atualiza a cada 30 segundos independente do Realtime
+    const interval = setInterval(() => {
+      router.refresh()
+    }, 30000)
+
     return () => {
       supabase.removeChannel(channel)
+      clearInterval(interval)
     }
   }, [router])
 
