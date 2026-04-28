@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, MapPin, Phone, IceCreamBowl, User, User2,  } from "lucide-react";
+import { Mail, MapPin, Phone, IceCreamBowl, User, User2, Hamburger,  } from "lucide-react";
 
 const company = [
     "Sobre nós",
@@ -42,11 +42,11 @@ const scrollToTop = () => {
                     <div className="lg:col-span-1">
                         <div className="flex items-center space-x-2 mb-6">
                             <div className="relative">
-                            <IceCreamBowl className="w-8 h-8 text-pink-400" />
+                            <Hamburger className="w-8 h-8 text-pink-400" />
                                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-linear-to-r from-pink-500 to-purple-500 rounded-full animate-pulse"></div>
                             </div>
                             <h3 className="text-2xl font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                Uffy
+                                Burgueria
                             </h3>
                         </div>
 
@@ -143,7 +143,7 @@ const scrollToTop = () => {
                                     href="mailto:guilherme.ribeiro1617@gmail.com"
                                     className="text-gray-400 hover:text-purple-400 transition-all duration-300 font-medium "
                                 >
-                                    Uffy@gmail.com
+                                    Burgueria@gmail.com
                                 </a>
                             </div>
 
@@ -182,7 +182,7 @@ const scrollToTop = () => {
                 <div className="border-t border-gray-700/50 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <p className="text-gray-800 text-sm text-center md:text-left">
-                            &copy; {new Date().getFullYear()} Uffy. Todos os direitos reservados.
+                            &copy; {new Date().getFullYear()} Burgueria. Todos os direitos reservados.
                         </p>
                         <div className="flex gap-4 text-gray-800 text-sm">
                             <a href="#privacidade" className="hover:text-purple-400 transition-colors">Privacidade</a>
