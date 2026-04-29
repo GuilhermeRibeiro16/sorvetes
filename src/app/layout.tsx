@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Uffy",
+  title: "Sorvete",
   description: " Sorveteria artesanal com entrega rápida e atendimento de qualidade.",
 };
 

@@ -1,5 +1,7 @@
 'use client'
 
+import { Printer } from 'lucide-react'
+import { OrderReceipt } from './OrderReceipt'
 import { useState } from 'react'
 import { MapPin, Store, ChevronDown, ChevronUp, Pencil, X } from 'lucide-react'
 import { Order, OrderStatus } from '@/types'
@@ -45,6 +47,39 @@ export function AdminOrderCard({ order }: { order: Order & { order_items: any[] 
   const [editing, setEditing] = useState(false)
   const [confirmCancel, setConfirmCancel] = useState(false)
   const [type, setType] = useState<'delivery' | 'pickup'>(order.type as any)
+  const [printing, setPrinting] = useState(false)
+
+function handlePrint() {
+  const receipt = document.getElementById('receipt')
+  if (!receipt) return
+
+  const printWindow = window.open('', '_blank', 'width=400,height=600')
+  if (!printWindow) return
+
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Comanda #${order.code}</title>
+        <style>
+          body { margin: 0; padding: 8px; font-family: monospace; }
+          @media print { body { width: 302px; } }
+        </style>
+      </head>
+      <body>${receipt.innerHTML}</body>
+    </html>
+  `)
+
+  printWindow.document.close()
+
+  printWindow.onload = () => {
+    printWindow.focus()
+    printWindow.print()
+    printWindow.close()
+  }
+}
+
+
+
 
   async function handleUpdateStatus() {
     const next = nextStatus[order.status as OrderStatus]
@@ -122,6 +157,14 @@ export function AdminOrderCard({ order }: { order: Order & { order_items: any[] 
               </span>
             </div>
             <div className="flex gap-2 mt-1">
+
+              <button
+                onClick={handlePrint}
+                style={{ color: 'var(--color-text-muted)' }}
+              >
+                <Printer size={14} />
+              </button>
+
               <button
                 onClick={() => setEditing(!editing)}
                 style={{ color: 'var(--color-text-muted)' }}
@@ -284,6 +327,10 @@ export function AdminOrderCard({ order }: { order: Order & { order_items: any[] 
           </button>
         )}
       </div>
+      {/* Comanda oculta para impressão */}
+<div style={{ display: 'none' }}>
+  <OrderReceipt order={order} />
+</div>
     </div>
   )
 }

@@ -22,13 +22,17 @@ export default async function AdminSettingsPage() {
       <h2 className="text-2xl font-bold" style={{ color: 'var(--color-text)' }}>
         Configurações
       </h2>
-      <SettingsForm
-        storeName={getValue('store_name')}
-        deliveryFee={getValue('delivery_fee')}
-        openingTime={getValue('opening_time')}
-        closingTime={getValue('closing_time')}
-        workingDays={getValue('working_days')}
-      />
+        <SettingsForm
+          storeName={getValue('store_name')}
+          deliveryFee={getValue('delivery_fee')}
+          openingTime={getValue('opening_time')}
+          closingTime={getValue('closing_time')}
+          workingDays={getValue('working_days')}
+          instagram={getValue('instagram')}
+          whatsapp={getValue('whatsapp')}
+          pixKey={getValue('pix_key')}
+          footerMessage={getValue('footer_message')}
+        />
     </div>
   )
 }

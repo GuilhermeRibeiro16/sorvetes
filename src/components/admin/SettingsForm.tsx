@@ -10,6 +10,10 @@ type SettingsFormProps = {
   openingTime: string
   closingTime: string
   workingDays: string
+  instagram: string
+  whatsapp: string
+  pixKey: string
+  footerMessage: string
 }
 
 export function SettingsForm({
@@ -18,6 +22,10 @@ export function SettingsForm({
   openingTime,
   closingTime,
   workingDays,
+  instagram,
+  whatsapp,
+  pixKey,
+  footerMessage
 }: SettingsFormProps) {
 
   const [loading, setLoading] = useState(false)
@@ -152,6 +160,60 @@ export function SettingsForm({
         ))}
       </div>
     </div>
+<div className="flex flex-col gap-2">
+  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+    Instagram
+  </label>
+  <input
+    name="instagram"
+    defaultValue={instagram}
+    placeholder="@suasorveteria"
+    className="w-full px-4 py-3 rounded-xl outline-none text-sm"
+    style={inputStyle}
+  />
+</div>
+
+<div className="flex flex-col gap-2">
+  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+    WhatsApp
+  </label>
+  <input
+    name="whatsapp"
+    defaultValue={whatsapp}
+    placeholder="(82) 99999-9999"
+    className="w-full px-4 py-3 rounded-xl outline-none text-sm"
+    style={inputStyle}
+  />
+</div>
+
+<div className="flex flex-col gap-2">
+  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+    Chave PIX
+  </label>
+  <input
+    name="pix_key"
+    defaultValue={pixKey}
+    placeholder="CPF, CNPJ, email ou chave aleatória"
+    className="w-full px-4 py-3 rounded-xl outline-none text-sm"
+    style={inputStyle}
+  />
+</div>
+
+<div className="flex flex-col gap-2">
+  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+    Rodapé da comanda
+  </label>
+  <input
+    name="footer_message"
+    defaultValue={footerMessage}
+    placeholder="Ex: Deus é fiel"
+    className="w-full px-4 py-3 rounded-xl outline-none text-sm"
+    style={inputStyle}
+  />
+</div>
+
+
+
   </div>
 
   {error && (
